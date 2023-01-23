@@ -4,7 +4,7 @@ import { IMAGE } from 'wildebeest/backend/src/activitypub/objects/image'
 import type { Object } from 'wildebeest/backend/src/activitypub/objects'
 
 export function fromObject(obj: Object): MediaAttachment {
-	if (obj.type === IMAGE) {
+	if ([IMAGE.toLowerCase(), 'video'].includes(obj.type.toLowerCase())) {
 		return fromObjectImage(obj)
 	} else if (obj.type === 'Document') {
 		return fromObjectDocument(obj as Document)
